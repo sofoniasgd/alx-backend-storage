@@ -11,15 +11,14 @@ if __name__ == "__main__":
     # coll will be the collection
     print(coll.count(), "logs")
     print("Methods:")
-    print("\tmethod GET:", coll.count({ "method": "GET"}))
-    print("\tmethod POST:", coll.count({ "method": "POST"}))
-    print("\tmethod PUT:", coll.count({ "method": "PUT"}))
-    print("\tmethod PATCH:", coll.count({ "method": "PATCH"}))
-    print("\tmethod DELETE:", coll.count({ "method": "DELETE"}))
+    print("\tmethod GET:", coll.count({"method": "GET"}))
+    print("\tmethod POST:", coll.count({"method": "POST"}))
+    print("\tmethod PUT:", coll.count({"method": "PUT"}))
+    print("\tmethod PATCH:", coll.count({"method": "PATCH"}))
+    print("\tmethod DELETE:", coll.count({"method": "DELETE"}))
     count = coll.aggregate([
-      { $match: { "method": "GET" , "path": "/status" }},
-      { $count: "count" }
+      {$match: {"method": "GET", "path": "/status"}},
+      {$count: "count"}
     ])
-    print(count.count, "status check")
-
-    
+    result = list(count)
+    print(result[0]["count"], "status check")
