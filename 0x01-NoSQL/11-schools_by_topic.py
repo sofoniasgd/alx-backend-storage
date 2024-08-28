@@ -10,4 +10,4 @@ def schools_by_topic(mongo_collection, topic):
             mongo_collection: pymongo collection object
             topic: (string) - the topic searched
     """
-    return mongo_collection.find( "topics": topic )
+    return mongo_collection.find({ "topics": topic })
