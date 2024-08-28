@@ -16,5 +16,10 @@ if __name__ == "__main__":
     print("\tmethod PUT:", coll.count({ "method": "PUT"}))
     print("\tmethod PATCH:", coll.count({ "method": "PATCH"}))
     print("\tmethod DELETE:", coll.count({ "method": "DELETE"}))
+    count = coll.aggregate([
+      { $match: { "method": "GET" , "path": "/status" }},
+      { $count: "count" }
+    ])
+    print(count.count, "status check")
 
     
